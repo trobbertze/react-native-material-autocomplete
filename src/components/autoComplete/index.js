@@ -291,6 +291,7 @@ export default class AutoComplete extends PureComponent {
         containerX: x,
         containerY: y,
         containerWidth: containerWidth,
+        containerHeight: containerHeight
       });
 
       if (this.props.data.length > 0) {
@@ -501,10 +502,9 @@ export default class AutoComplete extends PureComponent {
       position: 'absolute',
     };
     if (this.state.modal) this.showDropdown()
-    console.log(this.props.data.length)
     return (
       <View onLayout={() => undefined} ref={this.updateContainerRef} style={containerStyle}>
-        {modal ? null : this.renderBase()}
+        {modal ? <View style={{ height: this.state.containerHeight }} /> : this.renderBase()}
         <Modal visible={modal} transparent={true} onRequestClose={this.onClose}>
           {modal ? this.renderBase() : null}
           {this.props.showSpinner ?
